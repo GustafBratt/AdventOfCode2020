@@ -11,7 +11,6 @@ public class AoCUtils {
     public static List<String> fileAsLines(String filename){
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream(filename);
-        assert is != null;
         return new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
                 .lines()
                 .collect(Collectors.toList());
@@ -25,6 +24,10 @@ public class AoCUtils {
     }
     public static List<String> fileAsLines(int fileNumber){
         return fileAsLines("" + fileNumber +".txt");
+    }
+
+    public static List<Long> fileAsLongs(String filename){
+        return fileAsLines(filename).stream().map(Long::parseLong).collect(Collectors.toList());
     }
 
 }
